@@ -1,19 +1,36 @@
 ﻿## 出题前必看
-采用SQLite3引擎，并不是Mysql、SQLServer或者Oracle，也不是HiveSQL。
 
-SQLite3支持绝大部分SQL语法和函数，具体见：
+输入描述类似于数据库设计文档，写明白表结构和每个字段的意义及关系；
 
-the standard SQL language syntax: https://labfiles.acmcoder.com/sqlite-doc/lang.html
+测试用例可以多个，对于每个测试用例，都在单独干净的Mysql实例中进行运行；
 
-core functions: https://labfiles.acmcoder.com/sqlite-doc/lang_corefunc.html
+#### 对于每个测试用例的输入部分：
 
-date time functions: https://labfiles.acmcoder.com/sqlite-doc/lang_datefunc.html
+> 为一组SQL语句，应包含：
 
-aggregate functions: https://labfiles.acmcoder.com/sqlite-doc/lang_aggfunc.html
+>> create table建表语句
 
-window functions: https://labfiles.acmcoder.com/sqlite-doc/windowfunctions.html
+>> insert数据初始化语句；
 
-json functions: https://labfiles.acmcoder.com/sqlite-doc/json1.html
+>> 如果需要，可以加入其他建索引语句。
+
+#### 对于每个测试用例的输出部分：
+
+通过运行您的标程select语句，得出的符合题意的数据。
+
+#### 如何判题
+
+> 对于题目中的每一个测试用例，都将开启一个Mysql实例；
+
+> 执行测试用例的输入部分的SQL语句，建立表结构和相关索引，插入数据进行数据的初始化；
+
+> 执行考生提交的答案，应该是select语句，提交到Mysql实例进行执行，获取其查询到的数据；
+
+> 将考生答案语句查询到的数据和测试用例的输出部分进行比对，不比对第一行表头，完全一致即为正确。
+
+#### 其他
+
+每一组测试用例的输入部分，其建表语句和建索引语句应该相同，不同的是insert数据初始化语句。
 
 ## 题干
 Employee Salaries and Departments
@@ -124,4 +141,37 @@ Mike	100	Engineering	Kolkata
 ```
 
 ## 测试用例二输入
+
+您可以提供多组测试用例，也可以不提供。
+
+每一组测试用例的输入部分，其建表语句和建索引语句应该相同，不同的是insert数据初始化语句。
+
 ## 测试用例二输出
+
+您可以提供多组测试用例，也可以不提供。
+
+## 其他注意事项
+
+#### MYSQL
+
+> mysql版本：8.0.27
+
+> 默认安装，所以表名和列名大小写敏感（后期有可能改为大小写不敏感）。
+
+#### SQLite
+
+> sqlite版本：3.36.0
+
+> 其语法和标准mysql所支持的SQL有很多地方不一样，参考文档：
+
+> the standard SQL language syntax: https://labfiles.acmcoder.com/sqlite-doc/lang.html
+
+> core functions: https://labfiles.acmcoder.com/sqlite-doc/lang_corefunc.html
+
+> date time functions: https://labfiles.acmcoder.com/sqlite-doc/lang_datefunc.html
+
+> aggregate functions: https://labfiles.acmcoder.com/sqlite-doc/lang_aggfunc.html
+
+> window functions: https://labfiles.acmcoder.com/sqlite-doc/windowfunctions.html
+
+> json functions: https://labfiles.acmcoder.com/sqlite-doc/json1.html
